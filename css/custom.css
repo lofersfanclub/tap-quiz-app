@@ -1,0 +1,34 @@
+body{
+  color:#fff;
+}
+
+
+/*question container settings*/
+#questions div{
+  width: 100%;
+  padding: 1rem 2rem;
+}
+
+#questions div h3{
+  text-transform:uppercase;
+}
+
+/* theme colors*/
+.c1{background-color: #dc1478;}
+.c2{background-color: #54b23e;}
+.c3{background-color: #0072b5;}
+.c4{background-color: #3e6c35;}
+.c5{background-color: #c88225;}
+.c6{background-color: #f89222;}
+.c7{background-color: #f16121;}
+.c8{background-color: #841731;}
+.c9{background-color: #fcae14;}
+.c10{background-color: #00a4d4;}
+.c11{background-color: #ec3726;}
+.c12{background-color: #ba1c2c;}
+.c13{background-color: #24903f;}
+.c14{background-color: #cd9525;}
+.c15{background-color: #e81929;}
+.c16{background-color: #17305d;}
+.c17{background-color: #014b80;}
+.c18{background-color: #000000;}
