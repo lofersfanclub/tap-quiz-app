@@ -13,6 +13,75 @@
     </div>
     <div id="questions"></div>
   </body>
+
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+    <script>
+    var firebaseConfig = {
+    apiKey: "AIzaSyD42T6tYEYhAcZ7nKxVhAhZY2sHnePQqHA",
+    authDomain: "tap-quiz-app-c2ff0.firebaseapp.com",
+    databaseURL: "https://tap-quiz-app-c2ff0.firebaseio.com/",
+    projectId: "tap-quiz-app-c2ff0",
+    storageBucket: "tap-quiz-app-c2ff0.appspot.com"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    function writeScoreData(userId, name, email, score) {
+    firebase.database().ref('scoreboard/' + userId).set({
+    name: name,
+    email: email,
+    topscore: score
+    }, function (error) {
+    if (error) {
+    // The write failed...
+    } else {
+    // Data saved successfully!
+    }
+    });
+    }
+
+    function writeScoreData(name, email, score){
+    var myRef = firebase.database().ref().push();
+    var key = myRef.key();
+
+    var newData = {
+    id: key,
+    name: name,
+    email: email,
+    score: score
+    }
+
+    myRef.push(newData);
+
+    };
+
+    function readData(){
+    firebase.database().ref('/scoreboard/').once('value').then(function (snapshot) {
+    console.log(snapshot);
+
+    // ...
+    });
+    }
+
+    var name = "jonatan"
+    var email = "jonatan@mail.com";
+    var score = 45;
+
+    console.dir(name, email, score);
+
+
+    writeScoreData(name, email, score);
+
+    </script>
+
+    <!-- <script type="text/javascript" src="firebase.js"></script> -->
     <script type="text/javascript" src="questions.js"></script>
     <script type="text/javascript" src="loop.js"></script>
     <script type="text/javascript" src="gameplay.js"></script>
