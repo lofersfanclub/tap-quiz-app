@@ -1,17 +1,74 @@
-body{
-  color:#fff;
+
+/*Overall fixes*/
+html,
+body {
+  height: 100%;
+}
+
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #fff;
+  color: #fff;
+  font-family: AndHeadLine;
+}
+
+@font-face {
+    font-family: AndHeadLine;
+    src: url("../assets/AndHeadlineBold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: FreightTextPro;
+    src: url("../assets/FreightTextProBook.otf") format("opentype");
+}
+
+h1,h2,h3,h4,h5,button{
+ text-transform:uppercase;
 }
 
 
-/*question container settings*/
-#questions div{
-  width: 100%;
-  padding: 1rem 2rem;
+/*Bootstrap fixes*/
+
+.btn:disabled{
+  opacity: .35;
 }
 
-#questions div h3{
-  text-transform:uppercase;
+.btn{
+    border-radius: 0;
+    color:#fff;
 }
+
+.modal-footer .btn{
+  color:#333;
+}
+
+/*Modal adjustments*/
+.question-modal div{
+  color: #fff;
+  border:none;
+  border-radius: 0;
+  align-items: center;
+}
+
+.question-modal .lead{
+  text-align:center;
+}
+
+.question-modal .modal-content{
+  padding: 30px;
+}
+
+.question-modal .modal-footer{
+    justify-content:space-around;
+    align-content: stretch;
+    width:100%;
+}
+
+.question-modal button{
+  padding:0.5rem 2.3rem;
+}
+
 
 /* theme colors*/
 .c1{background-color: #dc1478;}
@@ -32,3 +89,9 @@ body{
 .c16{background-color: #17305d;}
 .c17{background-color: #014b80;}
 .c18{background-color: #000000;}
+
+
+/* tempfix*/
+.score{
+  color:#333;
+}
