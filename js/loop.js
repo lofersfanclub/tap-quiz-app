@@ -114,9 +114,13 @@ function validateChoice(a,b,qid){
 
   //check if game over
   if (playerAnswered == numQ){
+
+    //hide last question after 1.5s
     setTimeout(function(){
       $('#modal-q'+a).modal('hide');
     },1500);
+
+    //load endframe after 2s.
     setTimeout(function(){
       finalScore = document.getElementById("fscore");
       finalScoreText = document.createTextNode(playerScore);
@@ -127,6 +131,3 @@ function validateChoice(a,b,qid){
 
   }
 }
-
-
-//add function to end game (move to scoreboard) when all questions are disabled
