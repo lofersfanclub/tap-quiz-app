@@ -15,9 +15,29 @@
   </head>
 
   <body>
-    <h1 class="score">Score: <span id="pscore"></span></h1>
+    <h4 class="score">Score: <span id="pscore"></span></h4>
     <div id="questions"></div>
     <div id="qButtons"></div>
+
+<div id="modal-end" class="modal fade" role="dialog" aria-labelledby="modalLabel-0" aria-hidden="true">
+  <div class="question-modal modal-dialog" role="document">
+    <div class="modal-content c0">
+      <div class="modal-header">
+        <h4>Game over</h4>
+      </div>
+      <div class="modal-body text-center">
+          <form class="form-signin">
+            <p class=lead>Your final score was: <span id="fscore"></span></p>
+            <label for="inputNick" class="sr-only">Enter nickname</label>
+            <input type="text" id="inputNick" class="form-control" placeholder="Enter nickname" required autofocus><br/>
+            <button class="btn btn-light btn-lg btn-block" type="submit">Add to leaderboard</button>
+          </form>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+
+
   </body>
 
     <script type="text/javascript" src="js/questions.js"></script>
@@ -26,4 +46,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
 </html>

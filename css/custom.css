@@ -28,6 +28,10 @@ h1,h2,h3,h4,h5,button{
 }
 
 
+#modal-end button{
+  color:#333;
+}
+
 /*Bootstrap fixes*/
 
 .btn:disabled{
@@ -71,6 +75,7 @@ h1,h2,h3,h4,h5,button{
 
 
 /* theme colors*/
+.c0{background-color: #000;}
 .c1{background-color: #dc1478;}
 .c2{background-color: #54b23e;}
 .c3{background-color: #0072b5;}
@@ -94,4 +99,13 @@ h1,h2,h3,h4,h5,button{
 /* tempfix*/
 .score{
   color:#333;
+  padding: 1rem 3rem;
+}
+
+.score span, .lead span{
+  color:#dc1478;
+}
+
+#qButtons{
+    padding: 1rem 3rem;
 }

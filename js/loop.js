@@ -1,5 +1,5 @@
 var playerScore = 0;
-
+var playerAnswered = 0;
 
 //Get number of questions
 var numQ = quizQuestions.length;
@@ -40,11 +40,7 @@ for (i = 0; i < numQ; i++){
 
   //fill modal footer with options/choices
   for (n = 0; n < quizQuestions[i]['choices'].length; n++){
-    //if (n == quizQuestions[i]['correctAnswer']){
-    //  qModalFooter.innerHTML += '<button class="btn btn-success" type="button" id="'+quizQuestions[i]['id']+"_"+ n +'">' + quizQuestions[i]['choices'][n] + '</button>';
-  //  }else{
       qModalFooter.innerHTML += '<button id="q'+i+'a'+n+'"class="btn btn-light" type="button" onclick="validateChoice('+i+','+n+',q'+i+'a'+n+')">'+ quizQuestions[i]['choices'][n] +'</button>';
-  //  }
   }
 
   //send modals to container
@@ -67,33 +63,58 @@ for (i = 0; i < numQ; i++){
   //populate buttons
   qButton.innerHTML = quizQuestions[i]['title'];
 
-  //send buttons to containers
+  //send buttons to test menu
   document.getElementById('qButtons').appendChild(qButton);
+  qButtons.innerHTML += '<br/><br/>';
 }
 
 function validateChoice(a,b,qid){
   if (quizQuestions[a]['correctAnswer'] === b) {
-
     //toggle classes to make btn green on correct (needs to update other buttons on click)
     qid.classList.remove('btn-light');
     qid.className += " btn-success";
 
     //check if qustion has been answered
     if (document.getElementById('modal-b'+a).disabled != true) {
+
       //add score to scorevariable
       playerScore ++;
+
       //update score counter
       document.getElementById('pscore').innerHTML = playerScore;
     }
   } else{
-
     //toggle classes to make btn red on correct (needs to update other buttons on click)
     qid.classList.remove('btn-light');
     qid.classList += " btn-danger";
   }
 
-//disable access to question when answered
+  //disable access to question when answered
   document.getElementById('modal-b'+a).disabled = true;
+
+  //hide question when answered
+  setTimeout(function(){
+    $('#modal-q'+a).modal('hide');
+  },1500);
+
+
+  //add answered
+  playerAnswered ++;
+
+  //check if game over
+  if (playerAnswered == numQ){
+    setTimeout(function(){
+      $('#modal-q'+a).modal('hide');
+    },1500);
+    setTimeout(function(){
+      finalScore = document.getElementById("fscore");
+      finalScoreText = document.createTextNode(playerScore);
+      finalScore.appendChild(finalScoreText);
+
+      $('#modal-end').modal('show');
+    },2000);
+
+  }
 }
 
 
