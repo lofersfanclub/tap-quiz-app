@@ -7,65 +7,76 @@ var numQ = quizQuestions.length;
 //loop through all questions
 for (i = 0; i < numQ; i++){
 
-  //create modal outer
-  qModal1 = document.createElement('div');
-  qModal1.setAttribute("id","modal-q" + quizQuestions[i]['id'] );
-  qModal1.setAttribute("class", "modal fade");
-  qModal1.setAttribute("role","dialog");
-  qModal1.setAttribute("aria-labelledby","modalLabel-" + quizQuestions[i]['id']);
-  qModal1.setAttribute("aria-hidden","true");
+  //create outer container for modal
+  qModalOuter = document.createElement('div');
+    qModalOuter.setAttribute("id","modal-q" + quizQuestions[i]['id'] );
+    qModalOuter.setAttribute("class", "modal fade");
+    qModalOuter.setAttribute("role","dialog");
+    qModalOuter.setAttribute("aria-labelledby","modalLabel-" + quizQuestions[i]['id']);
+    qModalOuter.setAttribute("aria-hidden","true");
 
-  //create modal inner
-  qModal2 = document.createElement('div');
-  qModal2.setAttribute("class", "question-modal modal-dialog");
-  qModal2.setAttribute("role","document");
+  //create inner container for modal
+  qModalInner = document.createElement('div');
+    qModalInner.setAttribute("class", "question-modal modal-dialog");
+    qModalInner.setAttribute("role","document");
 
-  //create modal content
-  qModal3 = document.createElement('div');
-  qModal3.setAttribute("class", "modal-content c" + quizQuestions[i]['category']);
+  //create main container for modal
+  qModalMain = document.createElement('div');
+    qModalMain.setAttribute("class", "modal-content c" + quizQuestions[i]['category']);
 
-  //create modal containers
+  //create modal content areas
   qModalHeader = document.createElement('div');
-  qModalHeader.setAttribute("class", "modal-header");
+    qModalHeader.setAttribute("class", "modal-header");
 
   qModalBody = document.createElement('div');
-  qModalBody.setAttribute("class", "modal-body");
+    qModalBody.setAttribute("class", "modal-body");
 
   qModalFooter = document.createElement('div');
-  qModalFooter.setAttribute("class", "modal-footer");
+    qModalFooter.setAttribute("class", "modal-footer");
 
-  //fill modal with question title and content
-  qModalHeader.innerHTML = "<h4>" + quizQuestions[i]['title'] +"</h4";
+  //fill modal content areas with question contents
+  qModalHeader.innerHTML = "<h4>" + quizQuestions[i]['title'] +"</h4>";
   qModalBody.innerHTML += '<p class="lead">' + quizQuestions[i]['question'] +"</p>";
 
-  //fill modal footer with options/choices
+  //fill modal footer with options
   for (n = 0; n < quizQuestions[i]['choices'].length; n++){
-      qModalFooter.innerHTML += '<button id="q'+i+'a'+n+'"class="btn btn-light" type="button" onclick="validateChoice('+i+','+n+',q'+i+'a'+n+')">'+ quizQuestions[i]['choices'][n] +'</button>';
+    qModalOption = document.createElement('button');
+      qModalOption.setAttribute("id","q"+i+"a"+n );
+      qModalOption.setAttribute("class", "btn btn-light");
+      qModalOption.setAttribute("type","button");
+      qModalOption.setAttribute("onclick",'validateChoice('+i+','+n+',q'+i+'a'+n+')');
+
+      //Add option text
+      qModalOptionContent = document.createTextNode(quizQuestions[i]['choices'][n]);
+      qModalOption.appendChild(qModalOptionContent);
+
+      //send option button to document
+      qModalFooter.appendChild(qModalOption);
   }
 
   //send modals to container
-  document.getElementById('questions').appendChild(qModal1);
-  qModal1.appendChild(qModal2);
-  qModal2.appendChild(qModal3);
-  qModal3.appendChild(qModalHeader);
-  qModal3.appendChild(qModalBody);
-  qModal3.appendChild(qModalFooter);
+  document.getElementById('questions').appendChild(qModalOuter);
+    qModalOuter.appendChild(qModalInner);
+    qModalInner.appendChild(qModalMain);
+    qModalMain.appendChild(qModalHeader);
+    qModalMain.appendChild(qModalBody);
+    qModalMain.appendChild(qModalFooter);
 
 
   //create buttons
-  qButton = document.createElement('button');
-  qButton.setAttribute("id","modal-b" + quizQuestions[i]['id'] );
-  qButton.setAttribute("class", "btn c"+ quizQuestions[i]['category']);
-  qButton.setAttribute("type","button");
-  qButton.setAttribute("data-toggle","modal");
-  qButton.setAttribute("data-target","#modal-q" + quizQuestions[i]['id'] );
+  qBtn = document.createElement('button');
+    qBtn.setAttribute("id","modal-b" + quizQuestions[i]['id'] );
+    qBtn.setAttribute("class", "btn c"+ quizQuestions[i]['category']);
+    qBtn.setAttribute("type","button");
+    qBtn.setAttribute("data-toggle","modal");
+    qBtn.setAttribute("data-target","#modal-q" + quizQuestions[i]['id'] );
 
   //populate buttons
-  qButton.innerHTML = quizQuestions[i]['title'];
+  qBtn.innerHTML = quizQuestions[i]['title'];
 
   //send buttons to test menu
-  document.getElementById('qButtons').appendChild(qButton);
-  qButtons.innerHTML += '<br/><br/>';
+  document.getElementById('qButtons').appendChild(qBtn);
+    qButtons.innerHTML += '<br/><br/>';
 }
 
 function validateChoice(a,b,qid){
